@@ -1,0 +1,74 @@
+x=c(20,6,12,7,18)
+x
+rank(x)
+order(x)
+x
+sort(x) #getting the oerder statistics
+rank(x) #getting the rank of every elemnt
+x
+?order
+library(psistudent)
+##------ Start of session: Tue Feb 13 10:05:35 2018 ------##
+psi.show.student.message()
+order(x)
+x[order(x)]
+#what is ord4er????????
+x2 <- c(3,1,4,1,5,9,2,6,5,3,5)
+rank(x2)
+?rank
+rank(x2, method=c(("average", "first", "last", "random", "max", "min"))
+rank(x2, method=c("average", "first", "last", "random", "max", "min"))
+rank(x2, ties.method=c("average", "first", "last", "random", "max", "min"))
+rank(x2, ties.method="average")
+rank(x2, ties.method="min")
+rank(x2, ties.method="max")
+qu1data=read.table("xydata.txt", sep="", header=T)
+qu1data=read.table("xydata.txt", sep="", header=T)
+qu1data
+?cor.test
+cor.test(qu1data$x,qu1data$y,method="spearman")
+r1=rank(x)
+r1
+r1=rank(qu1data$x)
+r1
+s1=rank(qu1data$y)
+cor(r1,s1)
+cor(r1,s1) ##3.b diy cor for spearman rank
+##3.c doiy using the alternative formula
+d1=r1-s1
+p1=1-(6*sum(d1^2))/8*(8^2-1)
+p1
+p1=1-((6*sum(d1^2))/(8*(8^2-1)))
+p1
+##3 for another dataset
+qu2data=read.table("smdata.txt",sep="", header=T)
+qu2data
+names(qu2data=c("s","m")
+)
+names(qu2data$x,qu2data$y=c("s","m"))
+names(qu2data$x="s",qu2data$y="m")
+qu2data
+cor.test(qu2data$Speed,qu2data$Mileage,method="spearman")
+r2=rank(qu2data$Speed)
+s2=rank(qu2data$Mileage)
+r2
+s2
+cor(r2,s2)
+d2=r2-s2
+d2
+p2=1-((6*sum(d2^2))/(10*(10^2-1)))
+p2
+##3 with another dataset
+qu3data=read.table("exdata.csv",sep="",header=T)
+qu3data
+cor.test(qu3data$Ex1988,qu3data$Ex1987,method="spearman")
+r3=rank(qu3data$Ex1988)
+r3
+s3=rank(qu3data$Ex1987)
+s3
+d3=r3-s3
+p3=1-((6*sum(d3^2))/(10*(10^2-1)))
+p3
+##diy=speamran cor.test => there were no ties
+q()
+savehistory("lab3.txt")
