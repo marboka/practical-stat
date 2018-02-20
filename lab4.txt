@@ -1,0 +1,41 @@
+library(psistudent)
+##------ Start of session: Tue Feb 20 10:00:58 2018 ------##
+salary=read.table("salary.txt", sep="", header=T)
+salary
+salary=read.table("salary.txt", sep="", header=F)
+salary
+plot(salary)
+plot(I(salary$v1^2),salary$v2) 
+plot(I(salary$v1)^2,salary$v2) 
+plot((salary$v1)^2,salary$v2) 
+names(salary)
+names(salary$v1,salary$v2=c("x","y"))
+names(salary$V1,salary$V2=c("x","y"))
+names(salary$V1="x",salary$V2="y")
+names(salary)[1]<-paste("x")
+names(salary)[2]<-paste("y")
+salary
+salary$x^2<-salary$I(x)^2
+salary$x2<-salary$I(x)^2
+salary$x2<-salary$x^2
+salary
+salary$log_y<-salary$log(y)
+salary$logy<-salary$log(y)
+salary$logy<-salary$(log(y))
+salary$logy<-salary$log(y)
+salary$logy<-log(salary$y)
+salary
+within(salary,rm(logy))
+plot(salary)
+salary
+salary=within(salary,rm(logy))
+salary
+plot(salary)
+lm(x ~ 1 + y, data = salary)
+linr = lm(x ~ 1 + y, data = salary)
+summary(linr)
+str(linr)
+linr$residual standard error
+   coef(summary(lm.D9))[, "Std. Error"]
+names(linr)
+savehistory("lab4.txt")
