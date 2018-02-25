@@ -79,19 +79,23 @@ cov(qu3data$ex88,qu3data$ex87)
 3.D
 cor.test(qu3data$ex88,qu3data$ex87)
 3.E
+#r3 calculates the correlation coefficient by 'hand' 
 r3=var(qu3data$ex88,qu3data$ex87)/sqrt(var(qu3data$ex88)*var(qu3data$ex87))
 r3
-t3.obs=r3*sqrt(8)/sqrt(1-r3^2)
+test the hypothesis by hand with t_values and t_observed
 t3=qt(0.05/2,df=8,lower.tail=F)
 t3.obs>t3
 t3.obs;t3
 #true =>reject Ho
 3.F
+#this method gives a (-1,1) CI which is bollocks
 u3=exp(-2*1.96*sqrt(7))
 v3=exp(2*1.96*sqrt(7))
 ci3=c((1+r3-(1-r3)*v3)/(1+r3+(1-r3)*v3),(1+r3-(1-r3)*u3)/(1+r3+(1-r3)*u3))
 ci3
 r3
+#it gets quite closer to original (0.484,0.965), with its (0.662,0.940)
+#but I am pretty sure that i should use qnorm instead of dnorm
 (1+r3-(1-r3)*v3)/(1+r3+(1-r3)*v3)
 z=0.5*log((1+r3)/(1-r3))
 z
@@ -100,13 +104,6 @@ v3=exp(2*dnorm(z)*sqrt(7))
 u3=exp(-2*dnorm(z)*sqrt(7))
 ci3=c((1+r3-(1-r3)*v3)/(1+r3+(1-r3)*v3),(1+r3-(1-r3)*u3)/(1+r3+(1-r3)*u3))
 ci3
-v3=exp(2*dnorm(z/2)*sqrt(7))
-u3=exp(-2*dnorm(z/2)*sqrt(7))
-ci3=c((1+r3-(1-r3)*v3)/(1+r3+(1-r3)*v3),(1+r3-(1-r3)*u3)/(1+r3+(1-r3)*u3))
-ci3
-#?????????????????????????????????????????
-savefile(file="lab2.txt")
-savehistory(file="lab2.txt")
 
 
 
