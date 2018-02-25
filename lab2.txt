@@ -1,0 +1,140 @@
+NOTE:
+every part of question F might be wrong, tv data is definitely wrong with that one
+
+
+SETTING UP WORKPLACE
+wd()
+getwd()
+setwd(/home/boti/R/x86_64-pc-linux-gnu-library/3.4/codes/week2
+setwd("/home/boti/R/x86_64-pc-linux-gnu-library/3.4/codes/week2
+")
+setwd("/home/boti/R/x86_64-pc-linux-gnu-library/3.4/codes/week2")
+
+
+
+QUESTION 1
+1.A
+qu1data=read.table("xydata.txt",sep="", header=T)
+qu1data
+1.B
+plot(qu1data)
+1.C
+cor(qu1data$x,qu1data$y)
+1.D
+cor.test(qu1data$x,qu1data$y)
+1.E
+#as the p-value is the smallest significance level at which we would reject Ho in favour of Ha so we reject Ho when alpha(0.05)>=p which is true in this case
+#calculate r and t by hand
+r=var(qu1data$x,qu1data$y)/sqrt(var(qu1data$x)*var(qu1data$y))
+r
+t.obs=r*sqrt(6)/sqrt(1-r^2)
+t.obs #is the observed value for t
+qt(0.05/2,df=6,lower.tail=F) #getting the real t value
+#real t value is lower => reject the test
+1.F
+#fishers z trasform: z = 0.5[ln(1+r) – ln(1-r)]
+u=exp(-2*1.96/sqrt(5))      #HERE WE MIGHT HAVE TO USE THE FISCHER Z VALUE FOR THE CI
+u
+(1+r-(1-r)*u)/(1+r+(1-r)*u)
+v=exp(2*1.96/sqrt(5))       #HERE WE MIGHT HAVE TO USE THE FISCHER Z VALUE FOR THE CI
+(1+r-(1-r)*v)/(1+r+(1-r)*v)
+
+
+
+QUESTION 2
+2.A
+qu2data=read.table("smdata.txt", sep="", header=T)
+qu2data
+2.B
+plot(qu2data$Speed,qu2data$Mileage)
+names(qu2data)=c("s","m")
+qu2data
+2.C
+cov(qu2data$s,qu2data$m)
+2.D
+cor.test(qu2data$s,qu2data$m)
+2.E
+r2=cov(qu2data$s,qu2data$m)/sqrt(var(qu2data$s)*var(qu2data$m))
+r2
+t2.obs=(r2*sqrt(8))/(sqrt(1-r2^2))
+t2.obs
+qt(0.05/2, df=8, lower.tail=F)
+#t2.obs>t =>reject Ho
+2.F
+u2=exp(-2*1.96/sqrt(7))     #HERE WE MIGHT HAVE TO USE THE FISCHER Z VALUE FOR THE CI
+v2=exp(2*1.96/sqrt(7))      #HERE WE MIGHT HAVE TO USE THE FISCHER Z VALUE FOR THE CI
+ci2=c((1+r2-(1-r2)*v2)/(1+r2+(1-r2)*v2),(1+r2-(1-r2)*u2)/(1+r2+(1-r2)*u2))
+ci2
+
+
+
+QUESTION 3
+3.A
+qu3data=read.table("exdata.csv", sep="", header=T)
+3.B
+names(qu3data)=c("advertiser", "ex88", "ex87")
+plot(qu3data$ex88,qu3data$ex87)
+3.C
+cov(qu3data$ex88,qu3data$ex87)
+3.D
+cor.test(qu3data$ex88,qu3data$ex87)
+3.E
+r3=var(qu3data$ex88,qu3data$ex87)/sqrt(var(qu3data$ex88)*var(qu3data$ex87))
+r3
+t3.obs=r3*sqrt(8)/sqrt(1-r3^2)
+t3=qt(0.05/2,df=8,lower.tail=F)
+t3.obs>t3
+t3.obs;t3
+#true =>reject Ho
+3.F
+u3=exp(-2*1.96*sqrt(7))
+v3=exp(2*1.96*sqrt(7))
+ci3=c((1+r3-(1-r3)*v3)/(1+r3+(1-r3)*v3),(1+r3-(1-r3)*u3)/(1+r3+(1-r3)*u3))
+ci3
+r3
+(1+r3-(1-r3)*v3)/(1+r3+(1-r3)*v3)
+z=0.5*log((1+r3)/(1-r3))
+z
+dnorm(z)
+v3=exp(2*dnorm(z)*sqrt(7))
+u3=exp(-2*dnorm(z)*sqrt(7))
+ci3=c((1+r3-(1-r3)*v3)/(1+r3+(1-r3)*v3),(1+r3-(1-r3)*u3)/(1+r3+(1-r3)*u3))
+ci3
+v3=exp(2*dnorm(z/2)*sqrt(7))
+u3=exp(-2*dnorm(z/2)*sqrt(7))
+ci3=c((1+r3-(1-r3)*v3)/(1+r3+(1-r3)*v3),(1+r3-(1-r3)*u3)/(1+r3+(1-r3)*u3))
+ci3
+#?????????????????????????????????????????
+savefile(file="lab2.txt")
+savehistory(file="lab2.txt")
+
+
+
+QUESTION 4
+> cor.all=c(res1$estimate,res2$estimate,res3$estimate)
+> cor.all
+       cor        cor        cor 
+-0.9429358 -0.9103694  0.8534656 
+
+> t.all=c(res1$statistic,res2$statistic,res3$statistic)
+> t.all
+        t         t         t 
+-6.936597 -6.222656  4.632005 
+
+> df.all=c(res1$parameter,res2$parameter,res3$parameter)
+> df.all
+df df df 
+ 6  8  8 
+
+> p.all=c(res1$p.value,res2$p.value,res3$p.value)
+> p.all
+[1] 0.0004448948 0.0002531102 0.0016836475
+
+> mydecision <- c("reject", "reject", "reject")
+
+> mytbl <- data.frame(r=cor.all,t=t.all,df=df.all,p=p.all,decision=mydecision)
+> mytbl
+           r         t df            p decision
+1 -0.9429358 -6.936597  6 0.0004448948   reject
+2 -0.9103694 -6.222656  8 0.0002531102   reject
+3  0.8534656  4.632005  8 0.0016836475   reject
