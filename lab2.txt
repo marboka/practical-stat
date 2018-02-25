@@ -33,10 +33,10 @@ qt(0.05/2,df=6,lower.tail=F) #getting the real t value
 #real t value is lower => reject the test
 1.F
 #fishers z trasform: z = 0.5[ln(1+r) – ln(1-r)]
-u=exp(-2*1.96/sqrt(5))      #HERE WE MIGHT HAVE TO USE THE FISCHER Z VALUE FOR THE CI
+u=exp(-2*qnorm(0.05/2,lower.tail=FALSE)/sqrt(5))      #HERE WE MIGHT HAVE TO USE THE FISCHER Z VALUE FOR THE CI
 u
 (1+r-(1-r)*u)/(1+r+(1-r)*u)
-v=exp(2*1.96/sqrt(5))       #HERE WE MIGHT HAVE TO USE THE FISCHER Z VALUE FOR THE CI
+v=exp(2*qnorm(0.05/2,lower.tail=FALSE)/sqrt(5))       #HERE WE MIGHT HAVE TO USE THE FISCHER Z VALUE FOR THE CI
 (1+r-(1-r)*v)/(1+r+(1-r)*v)
 
 
@@ -61,8 +61,8 @@ t2.obs
 qt(0.05/2, df=8, lower.tail=F)
 #t2.obs>t =>reject Ho
 2.F
-u2=exp(-2*1.96/sqrt(7))     #HERE WE MIGHT HAVE TO USE THE FISCHER Z VALUE FOR THE CI
-v2=exp(2*1.96/sqrt(7))      #HERE WE MIGHT HAVE TO USE THE FISCHER Z VALUE FOR THE CI
+u2=exp(-2*qnorm(0.05/2,lower.tail=FALSE)/sqrt(7))     #HERE WE MIGHT HAVE TO USE THE FISCHER Z VALUE FOR THE CI
+v2=exp(2*qnorm(0.05/2,lower.tail=FALSE)/sqrt(7))      #HERE WE MIGHT HAVE TO USE THE FISCHER Z VALUE FOR THE CI
 ci2=c((1+r2-(1-r2)*v2)/(1+r2+(1-r2)*v2),(1+r2-(1-r2)*u2)/(1+r2+(1-r2)*u2))
 ci2
 
@@ -88,27 +88,16 @@ t3.obs>t3
 t3.obs;t3
 #true =>reject Ho
 3.F
-#this method gives a (-1,1) CI which is bollocks
-u3=exp(-2*1.96*sqrt(7))
-v3=exp(2*1.96*sqrt(7))
-ci3=c((1+r3-(1-r3)*v3)/(1+r3+(1-r3)*v3),(1+r3-(1-r3)*u3)/(1+r3+(1-r3)*u3))
-ci3
-r3
-#it gets quite closer to original (0.484,0.965), with its (0.662,0.940)
-#but I am pretty sure that i should use qnorm instead of dnorm
-(1+r3-(1-r3)*v3)/(1+r3+(1-r3)*v3)
-z=0.5*log((1+r3)/(1-r3))
-z
-dnorm(z)
-v3=exp(2*dnorm(z)*sqrt(7))
-u3=exp(-2*dnorm(z)*sqrt(7))
+#use the notes slide 31, no need for the z transform, our z is qnorm, mean=0, sd=1, UPPER quantile
+v3=exp(2*qnorm(0.05/2,lower.tail=FALSE)/sqrt(7))
+u3=exp(-2*qnorm(0.05/2,lower.tail=FALSE)/sqrt(7))
 ci3=c((1+r3-(1-r3)*v3)/(1+r3+(1-r3)*v3),(1+r3-(1-r3)*u3)/(1+r3+(1-r3)*u3))
 ci3
 
 
 
 QUESTION 4
-> cor.all=c(res1$estimate,res2$estimate,res3$estimate)
+> cor.all=c(res1$estimate,res2$estimate,res3$estimate) #were resA is the Ath example's cor.test
 > cor.all
        cor        cor        cor 
 -0.9429358 -0.9103694  0.8534656 
