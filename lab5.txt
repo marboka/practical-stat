@@ -1,18 +1,18 @@
-help(abline)
-setwd(/home/boti/R/x86_64-pc-linux-gnu-library/3.4/codes/week5
-#setwd(/home/boti/R/x86_64-pc-linux-gnu-library/3.4/codes/week5
 setwd('R/x86_64-pc-linux-gnu-library/3.4/codes/week5')
-read.table("brainweight.txt", header=TRUE, sep=",", row.names=1)
+
+
 braindata=read.table("brainweight.txt", header=TRUE, sep=",", row.names=1)
 plot(braindata$body, braindata$brain)
+
 fitted=lm(log(brain)~ 1 + log(body), data=braindata); fitted
 summary(fitted)
 # fitted e: 2.09 + 0.76*x + ei
 #estimate of variance of errors: 0.73
+
 #2.c
 anova(fitted)
 #reject the null hyothesis for Beta=0
-#2.f
+
 #2.d
 plot(braindata$body, braindata$brain)
 plot(log(braindata$body), log(braindata$brain))
@@ -21,13 +21,13 @@ abline(fitted)
 #this suggest that the modell is good, but plot residuals
 plot(residuals(fitted))
 #residuals oscillate around 0 without a patter so good so far
-plot(log(braindata$body), residuals(fitbrain))
 plot(log(braindata$body), residuals(fitted))
 #average is good here but there are some extreme values, so we cant say much about it
 #In summary, the parameters are significant, the model explains a high proportion
-of the variablility of the response variable, the residuals’ plots do not show obivious
-deviations from what we expect from a good model. Hence we conclude that the
-model is adequate.
+#of the variablility of the response variable, the residuals’ plots do not show obivious
+#deviations from what we expect from a good model. Hence we conclude that the
+#model is adequate.
+
 #2.e
 #95% interval for body 3kg
 newbody = data.frame(body=3)
@@ -40,7 +40,7 @@ predict(fitted, newbody, interval='prediction')
 #we need the prediction interval
 #and our responre variable is log(brain) so we need the inverso of that
 exp(predict(fitted, newbody, interval='prediction'))
-#
+
 #ii
 #the mean brain weight of polar bears assuming that the average weight of polar
 bears is 450 kg
@@ -49,4 +49,5 @@ bears is 450 kg'''
 #here we need a confidence interval
 exp(predict(fitbrain, data.frame(body = 450), interval = "confidence"))
 exp(predict(fitted, data.frame(body = 450), interval = "confidence"))
+
 savehistory('lab5.txt')
