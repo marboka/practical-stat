@@ -1,41 +1,109 @@
-library(psistudent)
-##------ Start of session: Tue Feb 20 10:00:58 2018 ------##
-salary=read.table("salary.txt", sep="", header=T)
-salary
+getwd()
+setwd('R/x86_64-pc-linux-gnu-library/3.4/codes/week4')
+getwd()
+
+
 salary=read.table("salary.txt", sep="", header=F)
-salary
-plot(salary)
-plot(I(salary$v1^2),salary$v2) 
-plot(I(salary$v1)^2,salary$v2) 
-plot((salary$v1)^2,salary$v2) 
-names(salary)
-names(salary$v1,salary$v2=c("x","y"))
-names(salary$V1,salary$V2=c("x","y"))
-names(salary$V1="x",salary$V2="y")
-names(salary)[1]<-paste("x")
-names(salary)[2]<-paste("y")
-salary
-salary$x^2<-salary$I(x)^2
-salary$x2<-salary$I(x)^2
-salary$x2<-salary$x^2
-salary
-salary$log_y<-salary$log(y)
-salary$logy<-salary$log(y)
-salary$logy<-salary$(log(y))
-salary$logy<-salary$log(y)
-salary$logy<-log(salary$y)
-salary
-within(salary,rm(logy))
 plot(salary)
 salary
-salary=within(salary,rm(logy))
-salary
+names(salary)[1]<-paste("year")
+names(salary)[2]<-paste("dollar")
+header(salary)
+head(salary)
+
+
+
+fit1= lm(dollar~1+I(year^2), data=salary); fit1
+summary(fit1)
+
+#2.b test if the slope is 0
+#the p value for that is 2*10^-14 which is small, therefore reject the null hy;pothesis
+
+#2.c test if intercept is 0
+#p value for that is 2e-16 so reject
+
+#2.d
+#estimate for sigma^2 is ('residual standard error')^2
+sigma_hat_sq=fit1.su$'Residual standard error'
+sigma_hat_sq=summary(fit1)$'Residual standard error'
+sigma_hat_sq
+#read out from table
+#take the square of that
+
+#2.e comment on the total variation explained by the modell
+summary(fit1)
+#we see that r^2 = 0.8182 hence 81% of the data are explained by our modell
+
+#2.f is the modell useful to predict salaries, 5% sig level
+anova(fit1)
+# he uses a different value for the F value, so dont know whats going on but our F value is small (2.2e-16 ) so the modell is useful to predict sallaries. he also said that the F stat shows whether our model is better with the slope parameter or without
+#sometimes he uses the value from the table, sometimes a different value
+ 
+#2.g predict a salary for 20 years, with a 95% prediction interval 
+newexp = data.frame(year=20)
+exper20=predict(fit1,newdata=newexp, interval = 'prediction') ; exper20
+#so the predicted salary is 51 with a 95% prediction interval (34.6,67.57)
+
+#2.h
+#if the regression modell is correct, the variance of the residuals should not depend on the values of the predictor
+#i. plot the residuals vs fitted values
+plot(fitted(fit1), residuals(fit1))
+plot(salary$year^2, residuals(fit1))
+# if the variance grows than we have a wrong modell
+#variance of residuals depends on the predictor variables meaning for different xi we have a different region of variance. this  a contradiction, modell is shite
+savehistory('lab4.txt')
+
+getwd()
+setwd('R/x86_64-pc-linux-gnu-library/3.4/codes/week4')
+getwd()
+
+
+salary=read.table("salary.txt", sep="", header=F)
 plot(salary)
-lm(x ~ 1 + y, data = salary)
-linr = lm(x ~ 1 + y, data = salary)
-summary(linr)
-str(linr)
-linr$residual standard error
-   coef(summary(lm.D9))[, "Std. Error"]
-names(linr)
-savehistory("lab4.txt")
+salary
+names(salary)[1]<-paste("year")
+names(salary)[2]<-paste("dollar")
+header(salary)
+head(salary)
+
+
+
+fit1= lm(dollar~1+I(year^2), data=salary); fit1
+summary(fit1)
+
+#2.b test if the slope is 0
+#the p value for that is 2*10^-14 which is small, therefore reject the null hy;pothesis
+
+#2.c test if intercept is 0
+#p value for that is 2e-16 so reject
+
+#2.d
+#estimate for sigma^2 is ('residual standard error')^2
+sigma_hat_sq=fit1.su$'Residual standard error'
+sigma_hat_sq=summary(fit1)$'Residual standard error'
+sigma_hat_sq
+#read out from table
+#take the square of that
+
+#2.e comment on the total variation explained by the modell
+summary(fit1)
+#we see that r^2 = 0.8182 hence 81% of the data are explained by our modell
+
+#2.f is the modell useful to predict salaries, 5% sig level
+anova(fit1)
+# he uses a different value for the F value, so dont know whats going on but our F value is small (2.2e-16 ) so the modell is useful to predict sallaries. he also said that the F stat shows whether our model is better with the slope parameter or without
+#sometimes he uses the value from the table, sometimes a different value
+ 
+#2.g predict a salary for 20 years, with a 95% prediction interval 
+newexp = data.frame(year=20)
+exper20=predict(fit1,newdata=newexp, interval = 'prediction') ; exper20
+#so the predicted salary is 51 with a 95% prediction interval (34.6,67.57)
+
+#2.h
+#if the regression modell is correct, the variance of the residuals should not depend on the values of the predictor
+#i. plot the residuals vs fitted values
+plot(fitted(fit1), residuals(fit1))
+plot(salary$year^2, residuals(fit1))
+# if the variance grows than we have a wrong modell
+#variance of residuals depends on the predictor variables meaning for different xi we have a different region of variance. this  a contradiction, modell is shite
+savehistory('lab4.txt')
