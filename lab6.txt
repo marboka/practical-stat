@@ -1,0 +1,61 @@
+#sheet 6 
+#2
+data=read.table('rs01.txt', header=F,sep='')
+data=read.table('rs01.txt', header=F,sep='')
+data
+data=read.table('rs01.txt', header=T,sep='')
+data
+data=scan('rs01.txt',sep='')
+header(data)
+header.data
+head(data, n=10)
+#2.a
+p=(1:lenght(data))/lenght(data);p
+p=(1:length(data))/length(data);p
+p=(1:length(data));p
+p=(1:length(data)-0.5);p
+p=(1:length(data)-0.5)/length(data));p
+p=(1:length(data)-0.5/length(data));p
+n=length(data);n
+p=(1:n-0.5/n);p
+p=(1:n-0.5)/n;p
+#this is the good one
+# now check it has normal (0,1)
+s=qnrom(p) # scores
+s=qnorm(p) # scores
+data.sorted=sort(data)
+s1=qnorm(p) # scores
+plot(s,data.sorted) #qq plot
+abline(0,1)
+#absolutely wrong, it has a big curvature
+#2.b do same with normal (2,3)
+s2=qnorm(p, mean=2, sd=sqrt(3)) # scores
+plot(s2,data.sorted) #qq plot
+abline(0,1)
+#the line got closer to the data and the slope changed but it still gives a big curvature doesnt matter what is the mean or sd so ditch normal empirical, try something else
+#2.d
+#try exp(1)
+s3=qexp(p, rate=1) # scores
+plot(s3,data.sorted) #qq plot
+abline(0,1)
+# this gives a much straigther line but the reference line has a different slope (smaller) -> try smaller rate
+s4=qexp(p, rate=0.5) # scores
+plot(s4,data.sorted) #qq plot
+abline(0,1,col='blue')
+#getting better but still not the best
+s4=qexp(p, rate=0.25) # scores
+s4=qexp(p, rate=0.5) # scores # delete this and prev line
+s5=qexp(p, rate=0.25) # scores
+plot(s5,data.sorted) #qq plot
+abline(0,1,col='blue')
+# a bit too much
+s6=qexp(p, rate=0.3) # scores
+plot(s6,data.sorted) #qq plot
+abline(0,1,col='blue')
+# asked the guy about wether we can reduce the distance as we did in normal with mean but exp only has 1 parameter
+# he said that  ishould try lm() to do that and do some linear transformation to reduce the slope
+#DO IT AT HOME
+save.file('lab6.txt')
+save.data('lab6.txt')
+savefile('lab6.txt')
+savehistory('lab6.txt')
