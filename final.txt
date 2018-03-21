@@ -1,0 +1,61 @@
+setwd('x86_64-pc-linux-gnu-library/3.4/codes/assignment3
+')
+setwd('x86_64-pc-linux-gnu-library/3.4/codes/assignment3')
+setwd('R/x86_64-pc-linux-gnu-library/3.4/codes/assignment3')
+read.table('treevol.dat',sep='',header=T)
+data=read.table('treevol.dat',sep='',header=T)
+#1
+plot(data$DBH, data$VOL)
+# it looks linear but there are a lot of outsiders
+#
+#2.a
+fitted=lm(
+)
+fitted=lm(VOL ~ 1 + DBH, data='data')
+fitted=lm(VOL ~ 1 + DBH, data=data)
+summary(fitted)
+#2.a
+#45.56+6.91x where 45.56 is the intercept and 6.91 is the slope
+#2.b
+#error var is 6.049^2
+#2.c
+#slope is zero if the p value for the slope var is large but it is really small, thereofre we reject the null hypothesis
+#intercept is zero if the p value for it is bigger than 5% which isn't therefore reject the null hypothesis
+#the total variation explained by the modell is 81.43% which is guite good therefore the model fits well. 81.43% of the data are explained by our model
+anova(fitted)
+#We use the F-statistic to test the null hypothesis that our model is not better than
+a model containing intercept. Since the p-value corresponding to the F-statistic is
+2.04713229884987e-33, which is very small, we confidently reject the null hypothesis
+and conclude that our model is better than the model containing only intercept and
+#we use F stat to test the null hypo that our modell is not better than a modell containng intercept. since the p value corresoinding to the F-statistic is small, we confidently reject the null hypo. and conclude that our model is botter than the model containg only intercept so our model is useful
+#
+#4
+#from summary we get that 81.43% is explained by the model but plot residauls
+plot (residuals(fitted))
+plot (residuals(fitted))
+#the residuals seem to oscillate around zero without any pattern as expected for a good model
+#
+#plot residuals vs predictor
+plot(data$DBH, residuals(fitted))
+#there are just a few values in the extreme so we can't really say much from this
+#in summart the parameters are significant, the model explains a high proportion of the response variable, the residual plots don't show obvious deviations from a good model so we can say the model is adequete
+savehistory('handin.txt')
+#
+#4.i
+4i=predict(fitted, data.frame(DBH=10.20), interval='confidence')
+q4i=predict(fitted, data.frame(DBH=10.20), interval='confidence')
+q4i
+q4ii=predict(fitted, data.frame(DBH=10.20), interval='prediction')
+q4ii
+?predict 
+?predict.lm
+#the prediction interval is for one future observation while the confidence is for the mean of future observations. The confidence is always more narrow because of the numbers of observations. This narrowness will increase as we increase the observations.
+#4i and 4ii supposed to be 5s
+#is DBH a good predictor? yes but probably a combined model including height and diameter at 16 inches would give a better estimation for the volume
+#
+#6
+?seq
+int=seq(10.5,19,0.5)
+int
+predict(fitted,data.frame(DBH=int),interval='prediction')
+savehistory('final.txt')
