@@ -106,6 +106,7 @@ f2= c(f2,data[i])
 }
 
 #do exponential fitting for both f1 and f2
+#TODO: lm()
 fp1=(1:length(f1) - 0.5) / length(f1)
 fp2=(1:length(f2) - 0.5) / length(f2)
 fscores1=qexp(fp1,rate=1/mean(f1))
