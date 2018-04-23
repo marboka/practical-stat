@@ -1,0 +1,338 @@
+setwd('/home/boti/R/x86_64-pc-linux-gnu-library/3.4/codes/assignment4')
+mine=scan('mines.txt')
+hist(mine)
+data=scan('mines.txt')
+hist(data)
+library(ggplot2)
+save(hist(data),file='graph1.pdf')
+plot1=hist(data)
+save(plot1,file='graph1.pdf')
+plot1
+plot2=plot(data=data,geom='histogram')
+libaray(ggplot)
+library(ggplot)
+library('ggplot2')
+install.packages('ggplot2')
+pdf('plot1.pdf')
+hist(data,main='') 
+dev.off()
+hist(data, breaks=500)
+#here we can see that our data can be splitted into 2 sub parts, 0-500 and 500-  because those two parts act really differently
+x1=strsplit(data, <500)
+x1=strsplit(data, split='<500')
+x1=strsplit(data, split=<500)
+x1=strsplit(data, split<500)
+x1 = data[i] if data[i]<500
+for (i in data) {
+}
+for (i in c(0,length(data)){
+for (i in seq(0,length(data),1) {
+for (i in 0:length(data)) {
+if (data[i]<500){
+x1=data[i]
+}
+x2=data[i]
+}
+data[1]
+for (i in 1:length(data)) {
+if (data[i]<500){
+x1=data[i]
+}
+x2=data[i]
+}
+x1
+x2
+length(x1)
+for (i in 1:length(data)) {
+if (data[i]<500){
+x1=c(x1, data[i])
+}
+x2=c(x2,data[i])
+}
+x1
+x2
+data
+x1=c()
+x2=c()
+for (i in 1:length(data)){
+if (data[i]<400){
+x1=c(x1,data[i])
+}
+if (data[i] >= 400) {
+x2= c(x2,data[i])
+}
+}
+x1
+x2
+hist(x1)
+hist(x2)
+hist(x1)
+#so now we seperated our data into 2 chunks
+#from now on we do every test for 3 vectors, data, x1, x2
+hist(x1)
+#this looks like a perfect exponential distribution
+hist(x2)
+#this can be anything, normal woth right skewness or also exponential
+##########################################################################################
+#2
+#data
+p=(1:length(data) - 0.5) / length(data)
+scores = qexp(p,rate=1)
+os=sort(data)
+plot(scores,os)
+abline(0,1,col='blue')
+plot(scores,os)
+abline(0,1,col='blue')
+abline(0, 1, col='blue')
+plot(scores,os)
+abline(0, 1, col='blue')
+scores = qexp(p,rate=1/mean(data))
+plot(scores,os)
+abline(0,1)
+#this gives that it works well and have that exponential distribution with rate=1/mean(data)
+#now do x1 and x2
+p1=(1:length(x1) - 0.5) / length(x1)
+p2=(1:length(x2) - 0.5) / length(x2)
+scores1=qexp(p1,rate=1/mean(x1))
+scores2=qexp(p2,rate=1/mean(x2))
+os1=sort(x1)
+os2=sort(x2)
+plot(scores1,os1)
+abline(0,1)
+plot(scores2,os2)
+abline(0,1)
+###########################################################################################
+#so now we can see that one part of the x1 has the required exponential distr but x2 does not
+#now I will decompose data into y1 and y2 
+for (i in 1:length(data)){
+if (data[i]<300){
+y1=c(x1,data[i])
+}
+if (data[i] >= 300) {
+y2= c(x2,data[i])
+}
+}
+p1=(1:length(y1) - 0.5) / length(x1)
+p2=(1:length(y2) - 0.5) / length(x2)
+scores1=qexp(p1,rate=1/mean(y1))
+scores2=qexp(p2,rate=1/mean(y2))
+os1=sort(y1)
+os2=sort(y2)
+plot(scores1,os1)
+p1=(1:length(y1) - 0.5) / length(y11)
+p2=(1:length(y2) - 0.5) / length(y2)
+scores1=qexp(p1,rate=1/mean(y1))
+scores2=qexp(p2,rate=1/mean(y2))
+os1=sort(y1)
+os2=sort(y2)
+plot(scores1,os1)
+p1=(1:length(y1) - 0.5) / length(y1)
+p2=(1:length(y2) - 0.5) / length(y2)
+scores1=qexp(p1,rate=1/mean(y1))
+scores2=qexp(p2,rate=1/mean(y2))
+os1=sort(y1)
+os2=sort(y2)
+plot(scores1,os1)
+abline(0,1)
+plot(scores2,os2)
+abline(0,1)
+p1=(1:length(x1) - 0.5) / length(x1)
+p2=(1:length(x2) - 0.5) / length(x2)
+scores1=qexp(p1,rate=1/mean(x1))
+scores2=qexp(p2,rate=1/mean(x2))
+os1=sort(x1)
+os2=sort(x2)
+plot(scores1,os1)
+abline(0,1)
+pdf('proba1.pdf)
+plot(scores1,os1)
+dev.off()
+pdf('proba1.pdf')
+plot(scores1,os1)
+abline(0,1)
+dev.off()
+p1=(1:length(y1) - 0.5) / length(y1)
+p2=(1:length(y2) - 0.5) / length(y2)
+scores1=qexp(p1,rate=1/mean(y1))
+scores2=qexp(p2,rate=1/mean(y2))
+os1=sort(y1)
+length(y1)
+length(x1)
+#chunking data into x1 if <500 and x2
+x1=c()
+x2=c()
+for (i in 1:length(data)){
+if (data[i]<400){
+x1=c(x1,data[i])
+}
+if (data[i] >= 400) {
+x2= c(x2,data[i])
+}
+}
+ 
+#fitting exponential to x1
+p1=(1:length(x1) - 0.5) / length(x1)
+p2=(1:length(x2) - 0.5) / length(x2)
+scores1=qexp(p1,rate=1/mean(x1))
+scores2=qexp(p2,rate=1/mean(x2))
+os1=sort(x1)
+os2=sort(x2)
+pdf('x1.pdf')
+plot(scores1,os1)
+abline(0,1)
+dev.off()
+plot(scores2,os2)
+abline(0,1)
+> #now I will decompose data into y1 and y2 
+y1=c()
+y2=c()
+for (i in 1:length(data)){
+if (data[i]<300){
+y1=c(y1,data[i])
+}
+if (data[i] >= 300) {
+y2= c(y2,data[i])
+}
+}
+#fitting exponential to y1
+p1=(1:length(y1) - 0.5) / length(y1)
+p2=(1:length(y2) - 0.5) / length(y2)
+scores1=qexp(p1,rate=1/mean(y1))
+scores2=qexp(p2,rate=1/mean(y2))
+os1=sort(y1)
+os2=sort(y2)
+pdf('x2.pdf')
+plot(scores1,os1)
+abline(0,1)
+dev.off()
+plot(scores2,os2)
+abline(0,1)
+p1=(1:length(x1) - 0.5) / length(x1)
+p2=(1:length(x2) - 0.5) / length(x2)
+scores1=qnorm(p1,mean=mean(x1),sd=sd(x1)/length(x1))
+scores2=qnorm(p1,mean=mean(21),sd=sd(21)/length(x2))
+os1=sort(x1)
+os2=sort(x2)
+pdf('x3.pdf')
+plot(scores1,os1)
+abline(0,1)
+dev.off()
+p1=(1:length(x1) - 0.5) / length(x1)
+p2=(1:length(x2) - 0.5) / length(x2)
+scores1=qnorm(p1,mean=mean(x1),sd=(sd(x1)/length(x1)))
+scores2=qnorm(p1,mean=mean(x2),sd=sd(x2)/length(x2))
+os1=sort(x1)
+os2=sort(x2)
+pdf('x3.pdf')
+plot(scores1,os1)
+abline(0,1)
+dev.off()
+p=(1:length(data) - 0.5) / length(data)
+scores = qnorm(p,mean=mean(data),sd=sd(data)/length(data))
+os=sort(data)
+plot(scores,os)
+abline(0,1,col='blue')
+library(psistudent)
+library('psistudent')
+library(psistudent)
+psi.pks
+setwd('/home/boti/R')
+library(psistudent)
+setwd('/home/boti/R/3.4')
+setwd('/home/boti/R/3.4/')
+setwd('/home/boti/R/x86_64-pc-linux-gnu-library/3.4/')
+library(psistudent)
+setwd('/home/boti/R/x86_64-pc-linux-gnu-library/3.4/psistat/')
+library(psistudent)
+install.package(psistudent)
+install.packages('home/boti/R/x86_64-pc-linux-gnu-library/3.4/psistat_0.14-3.tar.gz', repos = NULL, type="source")
+getwd()
+setwd('/home/boti/R/x86_64-pc-linux-gnu-library/3.4/codes/assignment4')
+getwd()
+ls()
+i
+##########################################################################################
+#3
+summed=cumsum(data); summed
+hist(summed)
+pdf('3.pdf')
+hist(summed,main='', xlim='')
+hist(summed,main='')
+dev.off()
+pdf('3.pdf')
+hist(summed,main='')
+dev.off()
+summed_date=as.Date('1851-03-15) + summed; summed_date
+)
+summed_date=as.Date('1851-03-15') + summed; summed_date
+hist(summed,xlim=summed_date)
+matr=cbind(summed_date,summed)
+matr
+summed_date
+summed
+hist(summed_date)
+hist(summed_date,breaks=7)
+hist(summed_date,breaks=14)
+hist(summed_date,breaks=15)
+hist(summed_date,breaks=14)
+hist(summed_date,breaks=15)
+pdf('date15bin.pdf')
+hist(summed_date,breaks=15)
+dev.off()
+pdf('date7bin.pdf')
+hist(summed_date,breaks=7)
+dev.off()
+#date suggest that there was a change in 1915
+as.Date('1915')-as.date('1851)
+as.Date('1915')-as.date('1851')
+as.Date('1915-01-01')-as.date('1851-01-01')
+as.Date('1915-01-01')-as.Date('1851-01-01')
+#time difference for that command is 23375 days
+#so that many days passed since 1st data
+#get index of that from summed
+#and use that index for data
+#to divide the data into 2 parts from that date
+match(23086,summed)
+#index=150
+#now divide into 2 parts
+f1=c()
+f2=c()
+for (i in 1:length(data)){
+if (i<150){
+f1=c(f1,data[i])
+}
+else {
+f2= c(f2,data[i])
+}
+}
+f1
+f2
+hist(f1)
+hist(f2)
+pdf('divided1.pdf')
+hist(f1,main='')
+dev.off()
+pdf('divided2.pdf')
+hist(f2,main='')
+dev.off()
+#now in theory we have 2 data sets with different rate
+#do exponential test with these
+#pdfs saved as div_expo1/2
+fp1=(1:length(f1) - 0.5) / length(f1)
+fp2=(1:length(f2) - 0.5) / length(f2)
+fscores1=qexp(fp1,rate=1/mean(f1))
+fscores2=qexp(fp2,rate=1/mean(f2))
+fos1=sort(f1)
+fos2=sort(f2)
+pdf('div_expo_1.pdf')
+plot(fscores1,fos1)
+abline(0,1)
+dev.off()
+pdf('div_expo_2.pdf')
+plot(fscores2,fos2)
+abline(0,1)
+dev.off()
+#this suggest a much better bit
+#there are some outsiders but we consider this as an improvement considered the previos setup
+savefile('rscript.txt')
+savehistory('rscript.txt')

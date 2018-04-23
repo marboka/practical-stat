@@ -1,0 +1,122 @@
+setwd('/home/boti/R/x86_64-pc-linux-gnu-library/3.4/codes/assignment4')
+install.packages('home/boti/R/x86_64-pc-linux-gnu-library/3.4/psistat_0.14-3.tar.gz', repos = NULL, type="source")
+data=scan('mines.txt')
+
+#chunking data into x1 if <500 and x2
+x1=c()
+x2=c()
+for (i in 1:length(data)){
+if (data[i]<400){
+x1=c(x1,data[i])
+}
+if (data[i] >= 400) {
+x2= c(x2,data[i])
+}
+}
+ 
+#fitting exponential to x1
+p1=(1:length(x1) - 0.5) / length(x1)
+p2=(1:length(x2) - 0.5) / length(x2)
+scores1=qexp(p1,rate=1/mean(x1))
+scores2=qexp(p2,rate=1/mean(x2))
+os1=sort(x1)
+os2=sort(x2)
+pdf('x1.pdf')
+plot(scores1,os1)
+abline(0,1)
+dev.off()
+plot(scores2,os2)
+abline(0,1)
+
+#now I will decompose data into y1 and y2 
+y1=c()
+y2=c()
+for (i in 1:length(data)){
+if (data[i]<300){
+y1=c(y1,data[i])
+}
+if (data[i] >= 300) {
+y2= c(y2,data[i])
+}
+}
+
+#fitting exponential to y1
+p1=(1:length(y1) - 0.5) / length(y1)
+p2=(1:length(y2) - 0.5) / length(y2)
+scores1=qexp(p1,rate=1/mean(y1))
+scores2=qexp(p2,rate=1/mean(y2))
+os1=sort(y1)
+os2=sort(y2)
+pdf('x2.pdf')
+plot(scores1,os1)
+abline(0,1)
+dev.off()
+plot(scores2,os2)
+abline(0,1)
+#nothing changes
+#I could do a linear regression to fit bestly to the nicely fitting parts
+#but that would be pointless as we are sure that the data is not coming
+#from an exponential distr.
+
+#from files x1 and x2 we conclude that none 
+#of those are coming from an exponential distribution
+p1=(1:length(x1) - 0.5) / length(x1)
+p2=(1:length(x2) - 0.5) / length(x2)
+scores1=qnorm(p1,mean=mean(x1),sd=(sd(x1)/length(x1)))
+scores2=qnorm(p1,mean=mean(x2),sd=sd(x2)/length(x2))
+os1=sort(x1)
+os2=sort(x2)
+pdf('y1_not_normal.pdf')
+plot(scores1,os1)
+abline(0,1)
+dev.off()
+#file definitely not come from normal
+
+#do a normal for the whole data set
+p=(1:length(data) - 0.5) / length(data)
+scores = qnorm(p,mean=mean(data),sd=sd(data)/length(data))
+os=sort(data)
+plot(scores,os)
+abline(0,1,col='blue')
+#so shit I don't even save it
+
+#nevertheless the qq plot suggest that the hypothesised distribution is
+#not the underlying one
+TODO: NOW DO lillefors test at uni pc
+
+
+###########################################################################
+#3
+as.Date('1915-01-01')-as.Date('1851-01-01')
+#Time difference of 23375 days
+ #time difference for that command is 23375 days
+
+######################################################################
+#4
+#divide into 2 parts:
+f1=c()
+f2=c()
+for (i in 1:length(data)){
+if (i<150){
+f1=c(f1,data[i])
+}
+else {
+f2= c(f2,data[i])
+}
+}
+
+#do exponential fitting for both f1 and f2
+fp1=(1:length(f1) - 0.5) / length(f1)
+fp2=(1:length(f2) - 0.5) / length(f2)
+fscores1=qexp(fp1,rate=1/mean(f1))
+fscores2=qexp(fp2,rate=1/mean(f2))
+fos1=sort(f1)
+fos2=sort(f2)
+pdf('div_expo_1.pdf')
+plot(fscores1,fos1)
+abline(0,1)
+dev.off()
+pdf('div_expo_2.pdf')
+plot(fscores2,fos2)
+abline(0,1)
+dev.off()
