@@ -39,6 +39,8 @@ p + c(-1,1)*qnorm(0.975)*phat.se		#CI [0.6226605, 0.6415806]
 #B-C
 #do phat and phat CI for different n's
  
-
+#2
+n=1000
+x=replicate(n, sum(rnorm(3)^2))
  
 
